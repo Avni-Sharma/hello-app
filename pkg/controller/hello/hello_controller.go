@@ -88,6 +88,11 @@ func (r *ReconcileHello) Reconcile(request reconcile.Request) (reconcile.Result,
 
 	// Fetch the Hello instance
 	instance := &appv1alpha1.Hello{}
+	if instance.Spec.Size == 4 {
+		reqLogger.Info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+
+	}
+	instance.Status.Message = "Hi there"
 	err := r.client.Get(context.TODO(), request.NamespacedName, instance)
 	if err != nil {
 		if errors.IsNotFound(err) {
@@ -99,7 +104,6 @@ func (r *ReconcileHello) Reconcile(request reconcile.Request) (reconcile.Result,
 		// Error reading the object - requeue the request.
 		return reconcile.Result{}, err
 	}
-
 	// Define a new Pod object
 	pod := newPodForCR(instance)
 
