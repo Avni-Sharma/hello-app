@@ -1,0 +1,11 @@
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: hello-app
+subjects:
+- kind: ServiceAccount
+  name: hello-app
+roleRef:
+  kind: Role
+  name: hello-app
+  apiGroup: rbac.authorization.k8s.io
