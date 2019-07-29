@@ -71,14 +71,14 @@ func schema_pkg_apis_app_v1alpha1_HelloSpec(ref common.ReferenceCallback) common
 					"size": {
 						SchemaProps: spec.SchemaProps{
 							Description: "INSERT ADDITIONAL SPEC FIELDS - desired state of cluster Important: Run \"operator-sdk generate k8s\" to regenerate code after modifying this file Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html",
-							Type:        []string{"integer"},
-							Format:      "int32",
+							Type:        []string{"string"},
+							Format:      "",
 						},
 					},
 					"age": {
 						SchemaProps: spec.SchemaProps{
-							Type:   []string{"integer"},
-							Format: "int32",
+							Type:   []string{"string"},
+							Format: "",
 						},
 					},
 				},

@@ -13,8 +13,8 @@ type HelloSpec struct {
 	// INSERT ADDITIONAL SPEC FIELDS - desired state of cluster
 	// Important: Run "operator-sdk generate k8s" to regenerate code after modifying this file
 	// Add custom validation using kubebuilder tags: https://book.kubebuilder.io/beyond_basics/generating_crd.html
-	Size int32 `json:"size"`
-	Age  int32 `json:"age"`
+	Size string `json:"size"`
+	Age  string `json:"age"`
 }
 
 // HelloStatus defines the observed state of Hello

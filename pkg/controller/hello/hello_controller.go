@@ -85,15 +85,12 @@ type ReconcileHello struct {
 func (r *ReconcileHello) Reconcile(request reconcile.Request) (reconcile.Result, error) {
 	reqLogger := log.WithValues("Request.Namespace", request.Namespace, "Request.Name", request.Name)
 	reqLogger.Info("Reconciling Hello")
-
+	reqLogger.Info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
 	// Fetch the Hello instance
 	instance := &appv1alpha1.Hello{}
-	if instance.Spec.Size == 4 {
-		reqLogger.Info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
 
-	}
-	instance.Status.Message = "Hi there"
 	err := r.client.Get(context.TODO(), request.NamespacedName, instance)
+
 	if err != nil {
 		if errors.IsNotFound(err) {
 			// Request object not found, could have been deleted after reconcile request.
@@ -103,6 +100,19 @@ func (r *ReconcileHello) Reconcile(request reconcile.Request) (reconcile.Result,
 		}
 		// Error reading the object - requeue the request.
 		return reconcile.Result{}, err
+	}
+
+	reqLogger.Info("aaaaaaaaaaaaaa--------------" + instance.Spec.Size)
+	if instance.Spec.Size == "4" {
+		reqLogger.Info("HHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+
+		instance.Status.Message = "Hi there"
+		err := r.client.Status().Update(context.TODO(), instance)
+		if err != nil {
+			log.Error(err, "error")
+			return reconcile.Result{}, err
+		}
+
 	}
 	// Define a new Pod object
 	pod := newPodForCR(instance)
